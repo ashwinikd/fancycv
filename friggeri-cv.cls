@@ -8,6 +8,7 @@
 \ProcessOptions\relax
 \LoadClass{article}
 \usepackage{longtable}
+\usepackage{parallel,enumitem}
 \usepackage{mdframed}
 
 
@@ -136,25 +137,30 @@
 
 \setlength{\tabcolsep}{0pt}
 \newenvironment{entrylist}{%
-  \begin{longtable}{@{\extracolsep{\fill}}ll}
+  \begin{Parallel}{0.12\textwidth}{0.86\textwidth}
 }{%
-  \end{longtable}
+  \end{Parallel}
 }
-
-\newenvironment{boxtype1}{%
-\begin{mdframed}%
-[linewidth=.5,margin=8.5,backgroundcolor=gray!20,linecolor=black,fontcolor=black]%
-\fontsize{9}{12}\sffamily\selectfont%
-}{\end{mdframed}}
 
 \renewcommand{\bfseries}{\headingfont\color{headercolor}}
 \newcommand{\entry}[4]{%
-  #1&\parbox[t]{11.8cm}{%
-    \textbf{#2}%
-    \hfill%
-    {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
-    #4\vspace{\parsep}%
-  }\\}
+  \ParallelLText{
+    \noindent
+    #1
+  }
+  \ParallelRText{%
+    \noindent%
+    \parbox[t]{11.8cm}{%
+      \textbf{#2}%
+      \hfill%
+      {\footnotesize\addfontfeature{Color=lightgray} #3}\\
+      #4
+    }
+
+  }
+  \ParallelPar
+  \bigskip
+}
 
 
 %%%%%%%%%%%%%%
