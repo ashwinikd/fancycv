@@ -7,9 +7,7 @@
 }
 \ProcessOptions\relax
 \LoadClass{article}
-\usepackage{longtable}
-\usepackage{parallel,enumitem}
-\usepackage{mdframed}
+\usepackage{parallel,enumitem,changepage}
 
 
 %%%%%%%%%%
@@ -137,29 +135,23 @@
 
 \setlength{\tabcolsep}{0pt}
 \newenvironment{entrylist}{%
-  \begin{Parallel}{0.12\textwidth}{0.86\textwidth}
 }{%
-  \end{Parallel}
 }
 
 \renewcommand{\bfseries}{\headingfont\color{headercolor}}
 \newcommand{\entry}[4]{%
-  \ParallelLText{
-    \noindent
+  \parbox[t]{2.0cm} {%
     #1
   }
-  \ParallelRText{%
-    \noindent%
-    \parbox[t]{11.8cm}{%
-      \textbf{#2}%
-      \hfill%
-      {\footnotesize\addfontfeature{Color=lightgray} #3}\\
-      #4
-    }
-
+  \hfill
+  \parbox[t]{11.8cm}{%
+    \textbf{#2}%
+    \hfill%
+    {\footnotesize\addfontfeature{Color=lightgray} #3}
   }
-  \ParallelPar
-  \bigskip
+  \begin{adjustwidth}{2.2cm}{0cm}
+    #4
+  \end{adjustwidth}
 }
 
 
